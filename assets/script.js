@@ -24,6 +24,20 @@ function load() {
     }
 };
 
+var weekday = [
+    moment().format('dddd'),
+    moment().add(1, 'd').format('dddd'),
+    moment().add(2, 'd').format('dddd'),
+    moment().add(3, 'd').format('dddd'),
+    moment().add(4, 'd').format('dddd'),
+    moment().add(5, 'd').format('dddd'),
+    moment().add(6, 'd').format('dddd'),
+]
+
+for (i = 0; i < 6; i++) {
+    document.getElementById('day-' + i + '').textContent = weekday[i];
+}
+
 function storeHistory(event) {
     if (!searchEl.value) {
         return;
