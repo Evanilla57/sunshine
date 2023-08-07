@@ -1,1 +1,1 @@
-console.log("JavaScript is ready to run");
+var apiKey = 'f5a003f8e333c73009944afc5cfcf5b8'
