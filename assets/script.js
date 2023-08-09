@@ -16,6 +16,7 @@ load();
 
 // Displays weather forecast based on search input
 function targetCity() {
+    var geoCode; 
     if (!searchInput) {
         geoCode = 'https://api.openweathermap.org/geo/1.0/direct?q=' + searchEl.value + '&limit=1&appid=' + apiKey + '';
         var localBtn = document.createElement('button');
