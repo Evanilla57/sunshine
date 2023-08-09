@@ -58,10 +58,10 @@ function targetCity() {
 };
 
 // Event Listeners
-searchBtn.addEventListener('click', targetCity);
+// searchBtn.addEventListener('click', targetCity);
 
 searchBtn.addEventListener('click', (event) => {
-    searchInput = event.target.textContent;
+    searchInput = event.target.previousSibling.textContent;
     targetCity();
 }) 
 
@@ -126,7 +126,7 @@ window.addEventListener('load', () => {
                         document.getElementById('wind-' + i + '').textContent = 'Wind: ' + Number(data.list[i].wind.speed).toFixed(0) + ' mph';
                     }
                     for (var i = 0; i < 6; i++) {
-                        document.getElementById('hum-' + i + '').textContent = 'Humidity: ' + Number(data.list[i].main.humidity) + '%';
+                        document.getElementById('humid-' + i + '').textContent = 'Humidity: ' + Number(data.list[i].main.humidity) + '%';
                     }
                     for (var i = 0; i < 6; i++) {
                         document.getElementById('icon-' + i + '').src = 'https://openweathermap.org/img/wn/' + data.list[i].weather[0].icon + '.png';
@@ -135,5 +135,3 @@ window.addEventListener('load', () => {
         });
     }
 })
-
-console.log(lon);
