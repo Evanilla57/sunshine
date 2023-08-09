@@ -16,10 +16,10 @@ load();
 
 // Displays weather forecast based on search input
 function targetCity() {
-    var geoCode; 
+    let geoCode; 
+    let localBtn = document.createElement('button');
     if (!searchInput) {
         geoCode = 'https://api.openweathermap.org/geo/1.0/direct?q=' + searchEl.value + '&limit=1&appid=' + apiKey + '';
-        var localBtn = document.createElement('button');
         localBtn.classList.add('local-btn');
         localBtn.textContent = searchEl.value;
         historyBtn.append(localBtn);
