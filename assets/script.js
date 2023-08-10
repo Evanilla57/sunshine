@@ -1,6 +1,6 @@
 // Variables
 var apiKey = '948c68d5e82bcef7d9b883a9094fe684';
-var searchEl = document.getElementById('search');
+// var searchEl = document.getElementById('search');
 var cityEl = document.getElementById('city');
 var searchBtn = document.getElementById('search-btn');
 var historyBtn = document.getElementById('history-btn');
@@ -19,18 +19,15 @@ function targetCity() {
     let geoCode; 
     let localBtn = document.createElement('button');
     if (!searchInput) {
-        geoCode = 'https://api.openweathermap.org/geo/1.0/direct?q=' + searchEl.value + '&limit=1&appid=' + apiKey + '';
-        localBtn.classList.add('local-btn');
-        localBtn.textContent = searchEl.value;
-        historyBtn.append(localBtn);
-        storeHistory(searchEl.value);
+        window.alert('Please input a city');
+        return;
     } else {
         geoCode = 'https://api.openweathermap.org/geo/1.0/direct?q=' + searchInput + '&limit=1&appid=' + apiKey + '';
-        localBtn.classList.add('local-btn');
-        localBtn.textContent = searchEl.value;
-        historyBtn.append(localBtn);
-        storeHistory(searchInput);
     }
+    localBtn.classList.add('local-btn');
+    localBtn.textContent = searchInput.value;
+    historyBtn.append(localBtn);
+    storeHistory(searchInput);
     cityEl.textContent = searchInput;
     console.log(searchInput);
     fetch(geoCode)
@@ -89,7 +86,7 @@ for (i = 0; i < 6; i++) {
 
 // Stores search data to local history
 function storeHistory(event) {
-    if (!searchEl.value) {
+    if (!searchInput.value) {
         return;
     };
     searchLocal.push(event);
