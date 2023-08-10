@@ -69,6 +69,7 @@ searchBtn.addEventListener('click', (event) => {
     targetCity();
 }) 
 
+//TODO: make forloop
 // Displays weekday
 var weekday = [
     moment().format('dddd'),
