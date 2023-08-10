@@ -26,9 +26,13 @@ function targetCity() {
         storeHistory(searchEl.value);
     } else {
         geoCode = 'https://api.openweathermap.org/geo/1.0/direct?q=' + searchInput + '&limit=1&appid=' + apiKey + '';
+        localBtn.classList.add('local-btn');
+        localBtn.textContent = searchEl.value;
+        historyBtn.append(localBtn);
         storeHistory(searchInput);
     }
-    cityEl = searchInput;
+    cityEl.textContent = searchInput;
+    console.log(searchInput);
     fetch(geoCode)
         .then(function (response) {
             return response.json();
