@@ -1,6 +1,5 @@
 // Variables
 var apiKey = '948c68d5e82bcef7d9b883a9094fe684';
-// var searchEl = document.getElementById('search');
 var cityEl = document.getElementById('city');
 var searchBtn = document.getElementById('search-btn');
 var historyBtn = document.getElementById('history-btn');
@@ -16,58 +15,30 @@ load();
 
 // Displays weather forecast based on search input
 function targetCity() {
-    let geoCode; 
+    apiCall();
     let localBtn = document.createElement('button');
-    if (!searchInput) {
-        window.alert('Please input a city');
-        return;
-    } else {
-        geoCode = 'https://api.openweathermap.org/geo/1.0/direct?q=' + searchInput + '&limit=1&appid=' + apiKey + '';
-    }
     localBtn.classList.add('local-btn');
-    localBtn.textContent = searchInput.value;
     historyBtn.append(localBtn);
+    localBtn.textContent = searchInput;
     storeHistory(searchInput);
     cityEl.textContent = searchInput;
-    console.log(searchInput);
-    fetch(geoCode)
-        .then(function (response) {
-            return response.json();
-        })
-        .then(function (data) {
-            console.log(data);
-            var lon = data[0].lon;
-            console.log(data[0]);
-            var lat = data[0].lat;
-            queryURL = 'https://api.openweathermap.org/data/2.5/forecast?lat=' + lat + '&lon=' + lon + '&appid=' + apiKey + '&units=imperial';
-            fetch(queryURL)
-                .then(function (response) {
-                    return response.json();
-                })
-                .then(function (data) {
-                    for (var i = 0; i < 6; i++) {
-                        document.getElementById('temp-' + i + '').textContent = 'Temp: ' + Number(data.list[i].main.temp).toFixed(0) + '°';
-                    }
-                    for (var i = 0; i < 6; i++) {
-                        document.getElementById('wind-' + i + '').textContent = 'Wind: ' + Number(data.list[i].wind.speed).toFixed(0) + ' mph';
-                    }
-                    for (var i = 0; i < 6; i++) {
-                        document.getElementById('humid-' + i + '').textContent = 'Humidity: ' + Number(data.list[i].main.humidity) + '%';
-                    }
-                    for (var i = 0; i < 6; i++) {
-                        document.getElementById('icon-' + i + '').src = 'https://openweathermap.org/img/wn/' + data.list[i].weather[0].icon + '.png';
-                    }
-                })
-        });
+    
+    localBtn.addEventListener('click', (event) => {
+        searchInput = event.target.textContent;
+        apiCall();
+        cityEl.textContent = searchInput;
+    })
 };
 
+
+
 // Event Listeners
-// searchBtn.addEventListener('click', targetCity);
 
 searchBtn.addEventListener('click', (event) => {
     searchInput = document.getElementById('textInput').value;
     targetCity();
-}) 
+})
+
 
 //TODO: make forloop
 // Displays weekday
@@ -140,3 +111,46 @@ window.addEventListener('load', () => {
         });
     }
 })
+
+
+//function for API calls
+function apiCall() {
+    let geoCode;
+    if (!searchInput) {
+        window.alert('Please input a city');
+        return;
+    } else {
+        geoCode = 'https://api.openweathermap.org/geo/1.0/direct?q=' + searchInput + '&limit=1&appid=' + apiKey + '';
+    }
+
+    fetch(geoCode)
+        .then(function (response) {
+            return response.json();
+        })
+        .then(function (data) {
+            console.log(data);
+            var lon = data[0].lon;
+            console.log(data[0]);
+            var lat = data[0].lat;
+            queryURL = 'https://api.openweathermap.org/data/2.5/forecast?lat=' + lat + '&lon=' + lon + '&appid=' + apiKey + '&units=imperial';
+            fetch(queryURL)
+                .then(function (response) {
+                    return response.json();
+                })
+                .then(function (data) {
+                    for (var i = 0; i < 6; i++) {
+                        document.getElementById('temp-' + i + '').textContent = 'Temp: ' + Number(data.list[i].main.temp).toFixed(0) + '°';
+                    }
+                    for (var i = 0; i < 6; i++) {
+                        document.getElementById('wind-' + i + '').textContent = 'Wind: ' + Number(data.list[i].wind.speed).toFixed(0) + ' mph';
+                    }
+                    for (var i = 0; i < 6; i++) {
+                        document.getElementById('humid-' + i + '').textContent = 'Humidity: ' + Number(data.list[i].main.humidity) + '%';
+                    }
+                    for (var i = 0; i < 6; i++) {
+                        document.getElementById('icon-' + i + '').src = 'https://openweathermap.org/img/wn/' + data.list[i].weather[0].icon + '.png';
+                    }
+                })
+        });
+
+}
