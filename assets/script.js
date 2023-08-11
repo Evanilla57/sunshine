@@ -40,7 +40,7 @@ searchBtn.addEventListener('click', (event) => {
 })
 
 
-//TODO: make forloop
+//TODO: make forloop, compare forloop to default
 // Displays weekday
 var weekday = [
     moment().format('dddd'),
@@ -65,6 +65,8 @@ function storeHistory(event) {
     localStorage.setItem('searchLocal', JSON.stringify(searchLocal));
 };
 
+//  TODO:make local history persistent
+//load function
 function load() {
     var loadHistory = localStorage.getItem('searchLocal')
     if (loadHistory == null) {
