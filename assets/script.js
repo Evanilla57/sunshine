@@ -1,3 +1,5 @@
+// TODO: capitalize city name, enter button to search
+
 // Variables
 var apiKey = '948c68d5e82bcef7d9b883a9094fe684';
 var cityEl = document.getElementById('city');
@@ -12,6 +14,8 @@ var searchInput;
 
 // Calls load function
 load();
+
+
 
 // Displays weather forecast based on search input
 function targetCity() {
@@ -58,7 +62,7 @@ for (i = 0; i < 6; i++) {
 
 // Stores search data to local history
 function storeHistory(event) {
-    if (!searchInput.value) {
+    if (!searchInput) {
         return;
     };
     searchLocal.push(event);
