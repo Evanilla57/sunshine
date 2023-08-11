@@ -74,7 +74,7 @@ function load() {
     };
     var cityArray = JSON.parse(loadHistory)
     for (var i = 0; i < cityArray.length; i++) {
-        var localBtn = document.createElement('button');
+        localBtn = document.createElement('button');
         localBtn.classList.add('local-btn')
         localBtn.textContent = cityArray[i]
         historyBtn.append(localBtn);
