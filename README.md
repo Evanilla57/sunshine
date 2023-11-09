@@ -28,8 +28,8 @@ THEN I am again presented with current and future conditions for that city
 ![Screenshot of a webpage displaying weather information](<assets/images/sunshine site.png>)
 
 ## Links
-Deployed Webpage: https://evanilla57.github.io/seattle/
-GitHub Repo Page: https://github.com/Evanilla57/seattle
+Deployed Webpage: https://evanilla57.github.io/sunshine/
+GitHub Repo Page: https://github.com/Evanilla57/sunshine
 
 ## Credits
 
